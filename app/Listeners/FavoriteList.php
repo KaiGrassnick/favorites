@@ -31,11 +31,11 @@ class FavoriteList extends AJAXListenerBase
 	{
 		$this->data['user_id'] = ( isset($_POST['userid']) ) ? intval($_POST['userid']) : null;
 		$this->data['site_id'] = ( isset($_POST['siteid']) ) ? intval($_POST['siteid']) : null;
-		$this->data['include_links'] = ( isset($_POST['include_links']) && $_POST['include_links'] == 'true' ) ? true : false;
-		$this->data['include_buttons'] = ( isset($_POST['include_buttons']) && $_POST['include_buttons'] == 'true' ) ? true : false;
-		$this->data['include_thumbnails'] = ( isset($_POST['include_thumbnails']) && $_POST['include_thumbnails'] == 'true' ) ? true : false;
+		$this->data['include_links'] = ( isset($_POST['include_links']) && $_POST['include_links'] == 'true' );
+		$this->data['include_buttons'] = ( isset($_POST['include_buttons']) && $_POST['include_buttons'] == 'true' );
+		$this->data['include_thumbnails'] = ( isset($_POST['include_thumbnails']) && $_POST['include_thumbnails'] == 'true' );
 		$this->data['thumbnail_size'] = ( isset($_POST['thumbnail_size']) && $_POST['thumbnail_size'] != '' ) ? sanitize_text_field($_POST['thumbnail_size']) : 'thumbnail';
-		$this->data['include_excerpt'] = ( isset($_POST['include_excerpt']) && $_POST['include_excerpt'] == 'true' ) ? true : false;
+		$this->data['include_excerpt'] = ( isset($_POST['include_excerpt']) && $_POST['include_excerpt'] == 'true' );
 		$this->data['no_favorites'] = ( isset($_POST['no_favorites']) ) ? sanitize_text_field($_POST['no_favorites']) : '';
 		$this->data['post_types'] = ( isset($_POST['post_types']) ) ? explode(',', $_POST['post_types']) : array();
 	}

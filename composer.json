@@ -9,6 +9,12 @@
 			"name": "Kyle Phillips",
 			"email": "kylephillipsdesign@gmail.com",
 			"homepage": "https://github.com/kylephillips"
+		},
+		{
+			"name": "Kai Grassnick",
+			"email": "wp-favorite@kai-grassnick.de",
+			"homepage": "https://kai-grassnick.de",
+			"role": "Contributor"
 		}
 	],
 	"type": "wordpress-plugin",
@@ -19,6 +25,11 @@
 	"autoload": {
 		"psr-4" : {
 			"Favorites\\" : "app/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true
 		}
 	}
 }

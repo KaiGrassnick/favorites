@@ -1,7 +1,6 @@
 <?php 
 namespace Favorites\Entities\User;
 
-use Favorites\Entities\User\UserRepository;
 use Favorites\Entities\Favorite\FavoriteFilter;
 use Favorites\Entities\FavoriteList\FavoriteList;
 
@@ -87,6 +86,8 @@ class UserFavorites
 	* @param $include_thumbnails boolean - whether to include post thumbnails
 	* @param $thumbnail_size string - thumbnail size to display
 	* @param $include_excerpt boolean - whether to include the post excerpt
+	*
+	* @return string
 	*/
 	public function getFavoritesList($include_button = false, $include_thumbnails = false, $thumbnail_size = 'thumbnail', $include_excerpt = false, $no_favorites = '')
 	{
@@ -107,6 +108,8 @@ class UserFavorites
 
 	/**
 	* Check if post exists and is published
+	*
+	* @return boolean
 	*/
 	private function postExists($id)
 	{

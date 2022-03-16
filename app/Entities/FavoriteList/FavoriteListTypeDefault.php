@@ -1,8 +1,6 @@
 <?php
 namespace Favorites\Entities\FavoriteList;
 
-use Favorites\Entities\Favorite\FavoriteButton;
-
 /**
 * Create a favorites list using the default markup
 */

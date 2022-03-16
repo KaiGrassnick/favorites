@@ -25,7 +25,7 @@ class CookieConsent
 
 	private function setConsent()
 	{
-		$this->consent = ( isset($_POST['consent']) && $_POST['consent'] == 'true' ) ? true : false;
+		$this->consent = ( isset($_POST['consent']) && $_POST['consent'] == 'true' );
 		if ( $this->consent ){
 			$this->setApprove();
 			return;

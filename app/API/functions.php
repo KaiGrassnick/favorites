@@ -12,9 +12,9 @@ use Favorites\Entities\Favorite\ClearFavoritesButton;
 
 /**
 * Get the favorite button
-* @param $post_id int, defaults to current post
-* @param $site_id int, defaults to current blog/site
-* @return html
+* @param $post_id int defaults to current post
+* @param $site_id int defaults to current blog/site
+* @return string html
 */
 function get_favorites_button($post_id = null, $site_id = null, $group_id = null)
 {
@@ -30,9 +30,9 @@ function get_favorites_button($post_id = null, $site_id = null, $group_id = null
 
 /**
 * Echos the favorite button
-* @param $post_id int, defaults to current post
-* @param $site_id int, defaults to current blog/site
-* @return html
+* @param $post_id int defaults to current post
+* @param $site_id int defaults to current blog/site
+* @return void
 */
 function the_favorites_button($post_id = null, $site_id = null, $group_id = null)
 {	
@@ -42,10 +42,10 @@ function the_favorites_button($post_id = null, $site_id = null, $group_id = null
 
 /**
 * Get the Favorite Total Count for a Post
-* @param $post_id int, defaults to current post
-* @param $site_id int, defaults to current blog/site
-* @param $html bool, whether to return html (returns simple integer if false)
-* @return html
+* @param $post_id int defaults to current post
+* @param $site_id int defaults to current blog/site
+* @param $html bool whether to return html (returns simple integer if false)
+* @return string html
 */
 function get_favorites_count($post_id = null, $site_id = null, $html = true)
 {
@@ -64,9 +64,9 @@ function get_favorites_count($post_id = null, $site_id = null, $html = true)
 
 /**
 * Echo the Favorite Count
-* @param $post_id int, defaults to current post
-* @param $site_id int, defaults to current blog/site
-* @return html
+* @param $post_id int defaults to current post
+* @param $site_id int defaults to current blog/site
+* @return void
 */
 function the_favorites_count($post_id = null, $site_id = null, $html = true)
 {
@@ -76,8 +76,8 @@ function the_favorites_count($post_id = null, $site_id = null, $html = true)
 
 /**
 * Get an array of User Favorites
-* @param $user_id int, defaults to current user
-* @param $site_id int, defaults to current blog/site
+* @param $user_id int defaults to current user
+* @param $site_id int defaults to current blog/site
 * @param $filters array of post types/taxonomies
 * @return array
 */
@@ -93,14 +93,14 @@ function get_user_favorites($user_id = null, $site_id = null, $filters = null)
 
 /**
 * HTML List of User Favorites
-* @param $user_id int, defaults to current user
-* @param $site_id int, defaults to current blog/site
+* @param $user_id int defaults to current user
+* @param $site_id int defaults to current blog/site
 * @param $filters array of post types/taxonomies
-* @param $include_button boolean, whether to include the favorite button for each item
-* @param $include_thumbnails boolean, whether to include the thumbnail for each item
-* @param $thumbnail_size string, the thumbnail size to display
-* @param $include_excpert boolean, whether to include the excerpt for each item
-* @return html
+* @param $include_button boolean whether to include the favorite button for each item
+* @param $include_thumbnails boolean whether to include the thumbnail for each item
+* @param $thumbnail_size string the thumbnail size to display
+* @param $include_excerpt boolean whether to include the excerpt for each item
+* @return string html
 */
 function get_user_favorites_list($user_id = null, $site_id = null, $include_links = false, $filters = null, $include_button = false, $include_thumbnails = false, $thumbnail_size = 'thumbnail', $include_excerpt = false)
 {
@@ -114,14 +114,14 @@ function get_user_favorites_list($user_id = null, $site_id = null, $include_link
 
 /**
 * Echo HTML List of User Favorites
-* @param $user_id int, defaults to current user
-* @param $site_id int, defaults to current blog/site
+* @param $user_id int defaults to current user
+* @param $site_id int defaults to current blog/site
 * @param $filters array of post types/taxonomies
-* @param $include_button boolean, whether to include the favorite button for each item
-* @param $include_thumbnails boolean, whether to include the thumbnail for each item
-* @param $thumbnail_size string, the thumbnail size to display
-* @param $include_excpert boolean, whether to include the excerpt for each item
-* @return html
+* @param $include_button boolean whether to include the favorite button for each item
+* @param $include_thumbnails boolean whether to include the thumbnail for each item
+* @param $thumbnail_size string the thumbnail size to display
+* @param $include_excerpt boolean whether to include the excerpt for each item
+* @return void
 */
 function the_user_favorites_list($user_id = null, $site_id = null, $include_links = false, $filters = null, $include_button = false, $include_thumbnails = false, $thumbnail_size = 'thumbnail', $include_excerpt = false)
 {
@@ -131,11 +131,11 @@ function the_user_favorites_list($user_id = null, $site_id = null, $include_link
 
 /**
 * Get the number of posts a specific user has favorited
-* @param $user_id int, defaults to current user
-* @param $site_id int, defaults to current blog/site
+* @param $user_id int defaults to current user
+* @param $site_id int defaults to current blog/site
 * @param $filters array of post types/taxonomies
-* @param $html boolean, whether to output html (important for AJAX updates). If false, an integer is returned
-* @return int
+* @param $html boolean whether to output html (important for AJAX updates). If false, an integer is returned
+* @return string
 */
 function get_user_favorites_count($user_id = null, $site_id = null, $filters = null, $html = false)
 {
@@ -153,10 +153,10 @@ function get_user_favorites_count($user_id = null, $site_id = null, $filters = n
 
 /**
 * Print the number of posts a specific user has favorited
-* @param $user_id int, defaults to current user
-* @param $site_id int, defaults to current blog/site
+* @param $user_id int defaults to current user
+* @param $site_id int defaults to current blog/site
 * @param $filters array of post types/taxonomies
-* @return html
+* @return void
 */
 function the_user_favorites_count($user_id = null, $site_id = null, $filters = null)
 {
@@ -166,9 +166,9 @@ function the_user_favorites_count($user_id = null, $site_id = null, $filters = n
 
 /**
 * Get an array of users who have favorited a post
-* @param $post_id int, defaults to current post
-* @param $site_id int, defaults to current blog/site
-* @param $user_role string, defaults to all
+* @param $post_id int defaults to current post
+* @param $site_id int defaults to current blog/site
+* @param $user_role string defaults to all
 * @return array of user objects
 */
 function get_users_who_favorited_post($post_id = null, $site_id = null, $user_role = null)
@@ -180,13 +180,13 @@ function get_users_who_favorited_post($post_id = null, $site_id = null, $user_ro
 
 /**
 * Get a list of users who favorited a post
-* @param $post_id int, defaults to current post
-* @param $site_id int, defaults to current blog/site
-* @param $separator string, custom separator between items (defaults to HTML list)
-* @param $include_anonmyous boolean, whether to include anonmyous users
-* @param $anonymous_label string, label for anonymous user count
-* @param $anonymous_label_single string, singular label for anonymous user count
-* @param $user_role string, defaults to all
+* @param $post_id int defaults to current post
+* @param $site_id int defaults to current blog/site
+* @param $separator string custom separator between items (defaults to HTML list)
+* @param $include_anonymous boolean whether to include anonymous users
+* @param $anonymous_label string label for anonymous user count
+* @param $anonymous_label_single string singular label for anonymous user count
+* @param $user_role string defaults to all
 */
 function the_users_who_favorited_post($post_id = null, $site_id = null, $separator = 'list', $include_anonymous = true, $anonymous_label = 'Anonymous Users', $anonymous_label_single = 'Anonymous User', $user_role = null)
 {
@@ -200,14 +200,14 @@ function the_users_who_favorited_post($post_id = null, $site_id = null, $separat
  * @return int Just anonymous users
  */
 function get_anonymous_users_who_favourited_post( $post_id = null ) {
-	$user = new PostFavorites( $post_id );
-	return $users->anonymousCount();
+	$user = new PostFavorites( $post_id , null, null);
+	return $user->anonymousCount();
 }
 
 /**
  * Echo the number of anonymous users who favorited a post
  * @param  $post_id int Defaults to current post
- * @return string Just anonymous users
+ * @return void
  */
 function the_anonymous_users_who_favourited_post( $post_id = null ) {
 	echo get_anonymous_users_who_favourited_post( $post_id );
@@ -215,9 +215,9 @@ function the_anonymous_users_who_favourited_post( $post_id = null ) {
 
 /**
 * Get the clear favorites button
-* @param $site_id int, defaults to current blog/site
-* @param $text string, button text - defaults to site setting
-* @return html
+* @param $site_id int defaults to current blog/site
+* @param $text string button text - defaults to site setting
+* @return string html
 */
 function get_clear_favorites_button($site_id = null, $text = null)
 {
@@ -228,9 +228,9 @@ function get_clear_favorites_button($site_id = null, $text = null)
 
 /**
 * Print the clear favorites button
-* @param $site_id int, defaults to current blog/site
-* @param $text string, button text - defaults to site setting
-* @return html
+* @param $site_id int defaults to current blog/site
+* @param $text string button text - defaults to site setting
+* @return void
 */
 function the_clear_favorites_button($site_id = null, $text = null)
 {
@@ -239,8 +239,8 @@ function the_clear_favorites_button($site_id = null, $text = null)
 
 /**
 * Get the total number of favorites, for all posts and users
-* @param $site_id int, defaults to current blog/site
-* @return html
+* @param $site_id int defaults to current blog/site
+* @return int
 */
 function get_total_favorites_count($site_id = null)
 {
@@ -250,8 +250,8 @@ function get_total_favorites_count($site_id = null)
 
 /**
 * Print the total number of favorites, for all posts and users
-* @param $site_id int, defaults to current blog/site
-* @return html
+* @param $site_id int defaults to current blog/site
+* @return void
 */
 function the_total_favorites_count($site_id = null)
 {

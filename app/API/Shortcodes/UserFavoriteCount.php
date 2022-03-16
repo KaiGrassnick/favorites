@@ -44,7 +44,7 @@ class UserFavoriteCount
 
 	/**
 	* Render the HTML list
-	* @param $options, array of shortcode options
+	* @param $options array of shortcode options
 	*/
 	public function renderView($options)
 	{

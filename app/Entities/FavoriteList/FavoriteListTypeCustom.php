@@ -1,9 +1,6 @@
 <?php
 namespace Favorites\Entities\FavoriteList;
 
-use Favorites\Entities\User\UserFavorites;
-use Favorites\Config\SettingsRepository;
-
 /**
 * Generate the list for custom markup list
 */

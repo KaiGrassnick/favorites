@@ -2,8 +2,6 @@
 namespace Favorites\Entities\FavoriteList;
 
 use Favorites\Config\SettingsRepository;
-use Favorites\Entities\FavoriteList\FavoriteListDefault;
-use Favorites\Entities\FavoriteList\FavoriteListCustom;
 
 abstract class FavoriteListBase
 {

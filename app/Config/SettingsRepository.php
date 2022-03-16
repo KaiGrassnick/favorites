@@ -14,7 +14,7 @@ class SettingsRepository
 	public function outputDependency($dependency = 'css')
 	{
 		$option = get_option('simplefavorites_dependencies');
-		return ( isset($option[$dependency]) && $option[$dependency] == 'true' ) ? true : false;
+		return ( isset($option[$dependency]) && $option[$dependency] == 'true' );
 	}
 
 	/**
@@ -25,7 +25,7 @@ class SettingsRepository
 	public function devMode()
 	{
 		$option = get_option('simplefavorites_dev_mode');
-		return ( isset($option) && $option == 'true' ) ? true : false;
+		return ( isset($option) && $option == 'true' );
 	}
 
 	/**
@@ -56,7 +56,7 @@ class SettingsRepository
 			return ( 
 				isset($consent_option['consent']) 
 				&& isset($consent_option['consent']['require']) 
-				&& $consent_option['consent']['require'] == 'true') ? true : false;
+				&& $consent_option['consent']['require'] == 'true');
 		}
 		if ( $option == 'modal' && isset($consent_option['consent']['modal']) ){
 			return ( $consent_option['consent']['modal'] !== '' ) ? apply_filters('the_content', $consent_option['consent']['modal']) : false;
@@ -124,7 +124,7 @@ class SettingsRepository
 	/**
 	* Authentication Gate Modal Content
 	* @since 2.0.3
-	* @return html
+	* @return string html
 	*/
 	public function authenticationModalContent($raw = false)
 	{
@@ -232,7 +232,7 @@ class SettingsRepository
 	public function includeCountInButton()
 	{
 		$option = get_option('simplefavorites_display');
-		return ( isset($option['buttoncount']) && $option['buttoncount'] == "true" ) ? true : false;
+		return ( isset($option['buttoncount']) && $option['buttoncount'] == "true" );
 	}
 
 	/**
@@ -243,7 +243,7 @@ class SettingsRepository
 	public function includeLoadingIndicator()
 	{
 		$option = get_option('simplefavorites_display');
-		return ( isset($option['loadingindicator']['include']) && $option['loadingindicator']['include'] == "true" ) ? true : false;
+		return ( isset($option['loadingindicator']['include']) && $option['loadingindicator']['include'] == "true" );
 	}
 
 	/**
@@ -254,7 +254,7 @@ class SettingsRepository
 	public function includeLoadingIndicatorPreload()
 	{
 		$option = get_option('simplefavorites_display');
-		return ( isset($option['loadingindicator']['include_preload']) && $option['loadingindicator']['include_preload'] == "true" ) ? true : false;
+		return ( isset($option['loadingindicator']['include_preload']) && $option['loadingindicator']['include_preload'] == "true" );
 	}
 
 	/**
@@ -359,7 +359,7 @@ class SettingsRepository
 	public function cacheEnabled()
 	{
 		$option = get_option('simplefavorites_cache_enabled');
-		return ( isset($option) && $option == "true" ) ? true : false;
+		return ( isset($option) && $option == "true" );
 	}
 
 	/**
@@ -448,10 +448,10 @@ class SettingsRepository
 		$option = $option['button_colors'];
 
 		if ( $color == 'custom' )
-			return ( !isset($option['custom']) || $option['custom'] !== "true" ) ? false : true;
+			return !( !isset($option['custom']) || $option['custom'] !== "true" );
 
 		if ( $color == 'box_shadow' )
-			return ( !isset($option['box_shadow']) || $option['box_shadow'] !== "true" ) ? false : true;
+			return !( !isset($option['box_shadow']) || $option['box_shadow'] !== "true" );
 
 		return ( isset($option[$color]) ) ? $option[$color] : false;
 	}
@@ -502,7 +502,7 @@ class SettingsRepository
 		$values['custom_colors'] = $this->buttonColors('custom');
 
 		// Box shadow
-		$values['box_shadow'] = ( isset($option['box_shadow']) && $option['box_shadow'] == 'true' ) ? true : false;
+		$values['box_shadow'] = ( isset($option['box_shadow']) && $option['box_shadow'] == 'true' );
 
 		// Include the count?
 		$values['include_count'] = $this->includeCountInButton();

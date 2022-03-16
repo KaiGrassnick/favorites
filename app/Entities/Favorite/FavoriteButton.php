@@ -62,7 +62,7 @@ class FavoriteButton
 	/**
 	* Diplay the Button
 	* @param boolean loading - whether to include loading class
-	* @return html
+	* @return string
 	*/
 	public function display($loading = true)
 	{
@@ -72,7 +72,7 @@ class FavoriteButton
 		if ( !$this->user->getsButton() ) return false;
 
 		$this->button_options = $this->settings_repo->formattedButtonOptions();
-		$this->favorited = ( $this->user->isFavorite($this->post_id, $this->site_id, null, $this->group_id) ) ? true : false;
+		$this->favorited = $this->user->isFavorite($this->post_id, $this->site_id, null, $this->group_id);
 		$count = $this->count->getCount($this->post_id, $this->site_id);
 		$button_html_type = apply_filters('favorites/button/element_type', $this->settings_repo->getButtonHtmlType(), $this->post_id, $this->site_id);
 		$html = $this->html();

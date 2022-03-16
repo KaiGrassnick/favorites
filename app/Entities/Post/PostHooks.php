@@ -2,7 +2,6 @@
 namespace Favorites\Entities\Post;
 
 use Favorites\Config\SettingsRepository;
-use Favorites\Entities\Favorite\FavoriteButton;
 
 /**
 * Post Actions and Filters

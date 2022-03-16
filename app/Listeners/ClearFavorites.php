@@ -1,7 +1,6 @@
 <?php 
 namespace Favorites\Listeners;
 
-use Favorites\Entities\Favorite\Favorite;
 use Favorites\Entities\Favorite\SyncAllFavorites;
 use Favorites\Entities\Post\SyncFavoriteCount;
 

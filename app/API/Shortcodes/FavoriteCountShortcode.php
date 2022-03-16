@@ -27,7 +27,7 @@ class FavoriteCountShortcode
 
 	/**
 	* Render the count
-	* @param $options, array of shortcode options
+	* @param $options array of shortcode options
 	*/
 	public function renderView($options)
 	{

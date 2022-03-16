@@ -14,6 +14,8 @@ class FavoriteList extends FavoriteListBase
 
 	/**
 	* Get the list
+	*
+	* @return string
 	*/
 	public function getList()
 	{

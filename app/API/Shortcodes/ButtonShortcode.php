@@ -28,7 +28,7 @@ class ButtonShortcode
 
 	/**
 	* Render the Button
-	* @param $options, array of shortcode options
+	* @param $options array of shortcode options
 	*/
 	public function renderView($options)
 	{

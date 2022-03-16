@@ -31,15 +31,15 @@ class PostFavoritesShortcode
 
 	/**
 	* Render the HTML list
-	* @param $options, array of shortcode options
+	* @param $options array of shortcode options
 	*/
 	public function renderView($options)
 	{
 		$this->setOptions($options);
 
-		$this->options['include_anonymous'] = ( $this->options['include_anonymous'] == 'true' ) ? true : false;
+		$this->options['include_anonymous'] = ( $this->options['include_anonymous'] == 'true' );
 		
-		return the_users_who_favorited_post(
+		the_users_who_favorited_post(
 			$post_id = $this->options['post_id'], 
 			$site_id = $this->options['site_id'], 
 			$separator = $this->options['separator'], 

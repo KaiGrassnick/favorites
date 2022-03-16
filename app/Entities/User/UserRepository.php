@@ -41,7 +41,7 @@ class UserRepository
 		} else {
 			$saveType = $this->settings_repo->saveType();
 			$favorites = ( $saveType == 'cookie' ) ? $this->getCookieFavorites() : $this->getSessionFavorites();
-			$all_favorites = $this->favoritesWithSiteID($favorites);			
+			$all_favorites = $this->favoritesWithSiteID($favorites);
 		}
 		
 		/**
@@ -182,12 +182,12 @@ class UserRepository
 	* @param int $site_id
 	* @param int $user_id
 	* @param int $group_id
+	* @return boolean
 	*/
 	public function isFavorite($post_id, $site_id = 1, $user_id = null, $group_id = null)
 	{
 		$favorites = $this->getFavorites($user_id, $site_id, $group_id);
-		if ( in_array($post_id, $favorites) ) return true;
-		return false;
+		return in_array($post_id, $favorites);
 	}
 
 	/**
@@ -202,8 +202,8 @@ class UserRepository
 
 	/**
 	* Format an array of favorites
-	* @param $post_id - int, post to add to array (for session/cookie favorites)
-	* @param $site_id - int, site id for post_id
+	* @param $post_id int post to add to array (for session/cookie favorites)
+	* @param $site_id int site id for post_id
 	*/
 	public function formattedFavorites($post_id = null, $site_id = null, $status = null)
 	{

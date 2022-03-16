@@ -52,7 +52,7 @@ class UserFavoritesShortcode
 
 	/**
 	* Render the HTML list
-	* @param $options, array of shortcode options
+	* @param $options array of shortcode options
 	*/
 	public function renderView($options)
 	{
@@ -61,10 +61,10 @@ class UserFavoritesShortcode
 		
 		if ( $this->options['user_id'] == "" ) $this->options['user_id'] = null;
 		if ( $this->options['site_id'] == "" ) $this->options['site_id'] = null;
-		$this->options['include_links'] = ( $this->options['include_links'] == 'true' ) ? true : false;
-		$this->options['include_buttons'] = ( $this->options['include_buttons'] == 'true' ) ? true : false;
-		$this->options['include_thumbnails'] = ( $this->options['include_thumbnails'] == 'true' ) ? true : false;
-		$this->options['include_excerpts'] = ( $this->options['include_excerpts'] == 'true' ) ? true : false;
+		$this->options['include_links'] = ( $this->options['include_links'] == 'true' );
+		$this->options['include_buttons'] = ( $this->options['include_buttons'] == 'true' );
+		$this->options['include_thumbnails'] = ( $this->options['include_thumbnails'] == 'true' );
+		$this->options['include_excerpts'] = ( $this->options['include_excerpts'] == 'true' );
 
 		$favorites = new UserFavorites(
 			$this->options['user_id'], 

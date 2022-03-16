@@ -2,7 +2,6 @@
 namespace Favorites\Entities\Post;
 
 use Favorites\Entities\User\UserRepository;
-use Favorites\Entities\Post\FavoriteCount;
 
 /**
 * Get the users who have favorited a specific post
@@ -26,13 +25,13 @@ class PostFavorites
 
 	/**
 	* User Repository
-	* @var Favorites\Entities\User\UserRepository;
+	* @var UserRepository;
 	*/
 	private $user_repo;
 
 	/**
 	* Favorite Count
-	* @var Favorites\Entities\Post\FavoriteCount
+	* @var FavoriteCount
 	*/
 	private $favorite_count;
 
@@ -69,8 +68,7 @@ class PostFavorites
 			'blog_id' => ( $this->site_id ) ? $this->site_id : get_current_blog_id(),
 			'role'    => $this->user_role
 		]);
-		$users = $user_query->get_results();
-		return $users;
+		return $user_query->get_results();
 	}
 
 	/**

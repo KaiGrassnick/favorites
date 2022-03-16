@@ -1,7 +1,6 @@
 <?php 
 namespace Favorites\Entities\Post;
 
-use Favorites\Entities\Post\FavoriteCount;
 use Favorites\Entities\User\UserRepository;
 
 /**

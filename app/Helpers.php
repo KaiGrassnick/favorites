@@ -87,7 +87,7 @@ class Helpers
 	* Pluck the site favorites from saved meta array
 	* @since 1.1
 	* @param int $site_id
-	* @param array $favorites (user meta)
+	* @param array $all_favorites (user meta)
 	* @return array
 	*/
 	public static function pluckSiteFavorites($site_id, $all_favorites)
@@ -101,8 +101,9 @@ class Helpers
 	/**
 	* Pluck the site favorites from saved meta array
 	* @since 1.1
+	* @param int $group_id
 	* @param int $site_id
-	* @param array $favorites (user meta)
+	* @param array $all_favorites (user meta)
 	* @return array
 	*/
 	public static function pluckGroupFavorites($group_id, $site_id, $all_favorites)

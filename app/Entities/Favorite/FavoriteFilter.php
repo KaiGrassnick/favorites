@@ -95,7 +95,7 @@ class FavoriteFilter
 			}
 
 			$dif = array_diff($all_filters, $all_terms);
-			if ( !empty($dif) ) unset($favorites[$key]);		
+			if ( !empty($dif) ) unset($favorites[$key]);
 
 		endforeach;
 

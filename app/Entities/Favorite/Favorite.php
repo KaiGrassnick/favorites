@@ -2,7 +2,6 @@
 namespace Favorites\Entities\Favorite;
 
 use Favorites\Config\SettingsRepository;
-use Favorites\Entities\Favorite\SyncSingleFavorite;
 use Favorites\Entities\Post\SyncFavoriteCount;
 
 class Favorite 

@@ -20,19 +20,19 @@ class FavoriteListingPresenter
 
 	/**
 	* The custom markup
-	* @var str
+	* @var string
 	*/
 	private $markup;
 
 	/**
 	* The return html
-	* @var str
+	* @var string
 	*/
 	private $html;
 
 	/**
 	* Primary API Method
-	* @param str markup
+	* @param string markup
 	* @param int favorite
 	*/
 	public function present($list_options, $markup, $favorite)

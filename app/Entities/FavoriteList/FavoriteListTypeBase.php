@@ -3,7 +3,6 @@ namespace Favorites\Entities\FavoriteList;
 
 use Favorites\Entities\User\UserFavorites;
 use Favorites\Config\SettingsRepository;
-use Favorites\Entities\FavoriteList\FavoriteListingPresenter;
 use Favorites\Entities\PostType\PostTypeRepository;
 
 /**
@@ -125,10 +124,12 @@ abstract class FavoriteListTypeBase
 
 	/**
 	* Generates the no favorites item
+	*
+	* @return string
 	*/
 	protected function noFavorites()
 	{
-		if ( !empty($this->favorites) ) return;
+		if ( !empty($this->favorites) ) return '';
 		$out = $this->listOpening();
 		$out .= '<' . $this->list_options->wrapper_type;
 		$out .= ' data-postid="0" data-nofavorites class="no-favorites">' . $this->list_options->no_favorites;
@@ -139,13 +140,15 @@ abstract class FavoriteListTypeBase
 
 	/**
 	* Get the markup for a full list
+	*
+	* @return string
 	*/
 	public function getListMarkup()
 	{
 		if ( is_multisite() ) switch_to_blog($this->list_options->site_id);
 		if ( empty($this->favorites) ) return $this->noFavorites();
 
-		$out = $this->listOpening();	
+		$out = $this->listOpening();
 		foreach ( $this->favorites as $key => $favorite ){
 			$out .= $this->listing($favorite);
 		}
