@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Favorites\Entities\Post;
 
 /**
@@ -7,15 +7,61 @@ namespace Favorites\Entities\Post;
 class FavoriteCount
 {
 	/**
-	* Get the favorite count for a post
-	*/
-	public function getCount($post_id, $site_id = null)
+	 * @param $post_id
+	 * @param $site_id
+	 * @param $group_id
+	 * @return int
+	 */
+	public function getCount($post_id, $site_id = null, $group_id = null)
+	{
+		if ($group_id === null) {
+			$group_id = "1";
+		}
+
+		$countArray = $this->getCountArray($post_id, $site_id);
+
+		$count = 0;
+		if (isset($countArray[$group_id])) {
+			$count = $countArray[$group_id];
+		}
+
+		return intval($count);
+	}
+
+	/**
+	 * @param $post_id
+	 * @param $site_id
+	 * @return int
+	 */
+	public function getTotalCount($post_id, $site_id = null)
+	{
+		$countArray = $this->getCountArray($post_id, $site_id);
+
+		$count = 0;
+		foreach ($countArray as $countEntry) {
+			$count += intval($countEntry);
+		}
+
+		return $count;
+	}
+
+	/**
+	 * @param $post_id
+	 * @param $site_id
+	 * @return array
+	 */
+	public function getCountArray($post_id, $site_id = null)
 	{
 		if ( (is_multisite()) && (isset($site_id)) && ($site_id !== "") ) switch_to_blog(intval($site_id));
-		$count = get_post_meta($post_id, 'simplefavorites_count', true);
-		if ( $count == '' ) $count = 0;
+		$countArray = get_post_meta($post_id, 'simplefavorites_count_array', true);
 		if ( (is_multisite()) && (isset($site_id) && ($site_id !== "")) ) restore_current_blog();
-		return intval($count);
+		if ( !is_array($countArray) ) {
+			$countArray = [];
+		}
+		if ( isset($countArray[0]) ) {
+			unset($countArray[0]);
+		}
+		return $countArray;
 	}
 
 	/**

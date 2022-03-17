@@ -23,6 +23,25 @@ Favorites.Utilities = function()
 		return status;
 	}
 
+
+	/*
+	* Check if an item is favorited
+	* @param int post_id
+	* @param object favorites for a specific site
+	*/
+	plugin.isGroupFavorite = function(post_id, group_id, group_favorites)
+	{
+		let status = false;
+		$.each(group_favorites, function(i, v){
+			if (parseInt(v.group_id) !== parseInt(group_id)) return;
+			$.each(v.posts, function (ii, vv) {
+				if ( vv === parseInt(post_id) ) status = true;
+				if ( parseInt(vv) === post_id ) status = true;
+			});
+		});
+		return status;
+	}
+
 	/**
 	* Get the length of an
 	*/

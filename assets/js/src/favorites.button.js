@@ -45,6 +45,7 @@ Favorites.Button = function()
 	{
 		plugin.data.post_id = $(plugin.activeButton).attr('data-postid');
 		plugin.data.site_id = $(plugin.activeButton).attr('data-siteid');
+		plugin.data.group_id = $(plugin.activeButton).attr('data-groupid');
 		plugin.data.status = ( $(plugin.activeButton).hasClass('active') ) ? 'inactive' : 'active';
 		var consentProvided = $(plugin.activeButton).attr('data-user-consent-accepted');
 		plugin.data.user_consent_accepted = ( typeof consentProvided !== 'undefined' && consentProvided !== '' ) ? true : false;
@@ -61,6 +62,7 @@ Favorites.Button = function()
 			action : Favorites.formActions.favorite,
 			postid : plugin.data.post_id,
 			siteid : plugin.data.site_id,
+			groupid : plugin.data.group_id,
 			status : plugin.data.status,
 			user_consent_accepted : plugin.data.user_consent_accepted
 		}
@@ -90,7 +92,7 @@ Favorites.Button = function()
 				Favorites.userFavorites = data.favorites;
 				plugin.loading(false);
 				plugin.resetButtons();
-				$(document).trigger('favorites-updated-single', [data.favorites, plugin.data.post_id, plugin.data.site_id, plugin.data.status]);
+				$(document).trigger('favorites-updated-single', [data.favorites, plugin.data.post_id, plugin.data.site_id, plugin.data.status, plugin.data.group_id]);
 				$(document).trigger('favorites-update-all-buttons');
 
 				// Deprecated callback
@@ -112,6 +114,7 @@ Favorites.Button = function()
 		var favorite_count = parseInt($(plugin.activeButton).attr('data-favoritecount'));
 
 		$.each(plugin.allButtons, function(){
+			if (plugin.data.group_id !== $(this).attr('data-groupid')) { return; }
 			if ( plugin.data.status === 'inactive' ) {
 				if ( favorite_count <= 0 ) favorite_count = 1;
 				$(this).removeClass(Favorites.cssClasses.active);

@@ -70,7 +70,7 @@ class FavoritesArrayFormatter
 			}
 			foreach ( $site_favorites['posts'] as $key => $favorite ){
 				unset($this->formatted_favorites[$site]['posts'][$key]);
-				$this->formatted_favorites[$site]['posts'][$favorite]['post_id'] = $favorite;
+				$this->formatted_favorites[$site]['posts'][$key]['post_id'] = $favorite;
 			}
 		}
 	}

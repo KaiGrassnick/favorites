@@ -73,7 +73,7 @@ class FavoriteButton
 
 		$this->button_options = $this->settings_repo->formattedButtonOptions();
 		$this->favorited = $this->user->isFavorite($this->post_id, $this->site_id, null, $this->group_id);
-		$count = $this->count->getCount($this->post_id, $this->site_id);
+		$count = $this->count->getCount($this->post_id, $this->site_id, $this->group_id);
 		$button_html_type = apply_filters('favorites/button/element_type', $this->settings_repo->getButtonHtmlType(), $this->post_id, $this->site_id);
 		$html = $this->html();
 
@@ -167,7 +167,7 @@ class FavoriteButton
 		} else {
 			if ( $default_colors['count_default'] ) $html .= 'color:' . $default_colors['count_default'] . ';';
 		}
-		$html .= '">' . $this->count->getCount($this->post_id, $this->site_id) . '</span>';
+		$html .= '">' . $this->count->getCount($this->post_id, $this->site_id, $this->group_id) . '</span>';
 		return apply_filters('favorites/button/count', $html);
 	}
 }

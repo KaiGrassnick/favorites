@@ -25,13 +25,14 @@ class FavoriteCount extends AJAXListenerBase
 	{
 		$this->data['postid'] = ( isset($_POST['postid']) ) ? intval($_POST['postid']) : null;
 		$this->data['siteid'] = ( isset($_POST['siteid']) ) ? intval($_POST['siteid']) : null;
+		$this->data['groupid'] = ( isset($_POST['groupid']) ) ? intval($_POST['groupid']) : null;
 	}
 
 	private function sendCount()
 	{
 		$this->response([
 			'status' => 'success',
-			'count' => $this->favorite_counter->getCount($this->data['postid'], $this->data['siteid'])
+			'count' => $this->favorite_counter->getCount($this->data['postid'], $this->data['siteid'], $this->data['groupid'])
 		]);
 	}
 }

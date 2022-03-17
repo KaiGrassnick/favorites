@@ -31,7 +31,7 @@ class Favorite
 		$saveType = $this->save_type;
 		$usersync->$saveType();
 		
-		$postsync = new SyncFavoriteCount($post_id, $status, $site_id);
+		$postsync = new SyncFavoriteCount($post_id, $status, $site_id, $group_id);
 		$postsync->sync();
 	}
 

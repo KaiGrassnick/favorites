@@ -42,7 +42,7 @@ class SyncSingleFavorite
 	*/
 	public function session()
 	{
-		if ( $this->user->isFavorite($this->post_id, $this->site_id) ) return $_SESSION['simplefavorites'] = $this->removeFavorite();
+		if ( $this->user->isFavorite($this->post_id, $this->site_id, null, $this->group_id) ) return $_SESSION['simplefavorites'] = $this->removeFavorite();
 		return $_SESSION['simplefavorites'] = $this->addFavorite();
 	}
 
@@ -51,7 +51,7 @@ class SyncSingleFavorite
 	*/
 	public function cookie()
 	{
-		if ( $this->user->isFavorite($this->post_id, $this->site_id) ){
+		if ( $this->user->isFavorite($this->post_id, $this->site_id, null, $this->group_id) ){
 			$favorites = $this->removeFavorite();
 			setcookie( 'simplefavorites', json_encode( $favorites ), time() + apply_filters( 'simplefavorites_cookie_expiration_interval', 31556926 ), '/' );
 			return;
@@ -82,7 +82,7 @@ class SyncSingleFavorite
 			foreach($site_favorites['posts'] as $k => $fav){
 				if ( $fav == $this->post_id ) unset($favorites[$key]['posts'][$k]);
 			}
-			if ( !Helpers::groupsExist($site_favorites) ) return;
+			if ( !Helpers::groupsExist($site_favorites) ) return [];
 			foreach( $site_favorites['groups'] as $group_key => $group){
 				if ( $group['group_id'] !== $this->group_id ) continue;
 				foreach ( $group['posts'] as $k => $g_post_id ){
@@ -90,6 +90,7 @@ class SyncSingleFavorite
 				}
 			}
 		}
+
 		$this->updateUserMeta($favorites);
 		return $favorites;
 	}
@@ -106,27 +107,32 @@ class SyncSingleFavorite
 				'posts' => []
 			];
 		}
+
+		$groupId = (int)$this->group_id;
+		$groupPosition = $groupId - 1;
+
 		// Loop through each site's favorites, continue if not the correct site id
 		foreach($favorites as $key => $site_favorites){
 			if ( $site_favorites['site_id'] !== $this->site_id ) continue;
 			$favorites[$key]['posts'][] = $this->post_id;
 
-			// Add the default group if it doesn't exist yet
-			if ( !Helpers::groupsExist($site_favorites) ){
-				$favorites[$key]['groups'] = [
-					[
-						'group_id' => 1,
-						'site_id' => $this->site_id,
-						'group_name' => __('Default List', 'favorites'),
-						'posts' => array()
-					]
+			if(!isset($favorites[$key]['groups'][$groupPosition])) {
+				$groupName = ($groupId === 1) ? 'Default List' : 'List ' . $groupId;
+				$favorites[$key]['groups'][$groupPosition] = [
+					'group_id' => $groupId,
+					'site_id' => $this->site_id,
+					'group_name' => __($groupName, 'favorites'),
+					'posts' => []
 				];
 			}
+
 			foreach( $favorites[$key]['groups'] as $group_key => $group){
-				if ( $group['group_id'] == $this->group_id ) 
+				if ( $group['group_id'] == $groupId ) {
 					$favorites[$key]['groups'][$group_key]['posts'][] = $this->post_id;
+				}
 			}
 		}
+
 		$this->updateUserMeta($favorites);
 		return $favorites;
 	}

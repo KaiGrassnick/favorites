@@ -31,7 +31,7 @@ class FavoriteButton extends AJAXListenerBase
 		try {
 			$this->beforeUpdateAction();
 			if ( !$this->validates() ) throw new \Exception(__('Invalid post.', 'favorites'));
-			$favorite = new Favorite;
+			$favorite = new Favorite();
 			$favorite->update($this->data['postid'], $this->data['status'], $this->data['siteid'], $this->data['groupid']);
 			$this->afterUpdateAction();
 			$this->response([
@@ -46,7 +46,7 @@ class FavoriteButton extends AJAXListenerBase
 				'favorites' => $this->user_repo->formattedFavorites($this->data['postid'], $this->data['siteid'], $this->data['status'])
 			]);
 		} catch ( \Exception $e ){
-			return $this->sendError($e->getMessage());
+			$this->sendError($e->getMessage());
 		}
 	}
 

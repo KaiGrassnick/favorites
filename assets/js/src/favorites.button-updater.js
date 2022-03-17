@@ -40,7 +40,7 @@ Favorites.ButtonUpdater = function()
 			plugin.activeButton = $(buttons)[i];
 			if ( Favorites.authenticated ) plugin.setButtonData();
 
-			if ( Favorites.authenticated && plugin.utilities.isFavorite( plugin.data.postid, plugin.data.site_favorites ) ){
+			if ( Favorites.authenticated && plugin.utilities.isGroupFavorite( plugin.data.postid, plugin.data.groupid, plugin.data.group_favorites ) ){
 				plugin.buttonFormatter.format($(plugin.activeButton), true);
 				$(plugin.activeButton).addClass(Favorites.cssClasses.active);
 				$(plugin.activeButton).removeClass(Favorites.cssClasses.loading);
@@ -63,9 +63,11 @@ Favorites.ButtonUpdater = function()
 	{
 		plugin.data.postid = $(plugin.activeButton).attr('data-postid');
 		plugin.data.siteid = $(plugin.activeButton).attr('data-siteid');
+		plugin.data.groupid = $(plugin.activeButton).attr('data-groupid');
 		plugin.data.favorite_count = $(plugin.activeButton).attr('data-favoritecount');
 		plugin.data.site_index = plugin.utilities.siteIndex(plugin.data.siteid);
 		plugin.data.site_favorites = Favorites.userFavorites[plugin.data.site_index].posts;
+		plugin.data.group_favorites = Favorites.userFavorites[plugin.data.site_index].groups;
 		if ( plugin.data.favorite_count <= 0 ) plugin.data.favorite_count = 0;
 	}
 

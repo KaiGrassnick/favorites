@@ -23,7 +23,7 @@ function get_favorites_button($post_id = null, $site_id = null, $group_id = null
 	if ( !$group_id ) $group_id = 1;
 	$site_id = ( is_multisite() && is_null($site_id) ) ? $blog_id : $site_id;
 	if ( !is_multisite() ) $site_id = 1;
-	$button = new FavoriteButton($post_id, $site_id);
+	$button = new FavoriteButton($post_id, $site_id, $group_id);
 	return $button->display();
 }
 

@@ -39,7 +39,7 @@ abstract class AJAXListenerBase
 	protected function sendError($error = null)
 	{
 		$error = ( $error ) ? $error : __('There was an error processing the request.', 'favorites');
-		return wp_send_json([
+		wp_send_json([
 			'status' => 'error', 
 			'message' => $error
 		]);
@@ -50,10 +50,15 @@ abstract class AJAXListenerBase
 	*/
 	protected function checkLogIn()
 	{
-		if ( is_user_logged_in() ) return true;
-		if ( $this->settings_repo->anonymous('display') ) return true;
-		if ( $this->settings_repo->requireLogin() ) return $this->response(['status' => 'unauthenticated']);
-		if ( $this->settings_repo->redirectAnonymous() ) return $this->response(['status' => 'unauthenticated']);
+		if ( is_user_logged_in() || $this->settings_repo->anonymous('display')) {
+			return true;
+		}
+
+		if ( $this->settings_repo->requireLogin() || $this->settings_repo->redirectAnonymous()) {
+			$this->response(['status' => 'unauthenticated']);
+			return false;
+		}
+		return false;
 	}
 
 	/**
@@ -62,7 +67,7 @@ abstract class AJAXListenerBase
 	protected function checkConsent()
 	{
 		if ( $this->user_repo->consentedToCookies() ) return;
-		return $this->response([
+		$this->response([
 			'status' => 'consent_required', 
 			'message' => $this->settings_repo->consent('modal'),
 			'accept_text' => $this->settings_repo->consent('consent_button_text'),
@@ -76,6 +81,6 @@ abstract class AJAXListenerBase
 	*/
 	protected function response($response)
 	{
-		return wp_send_json($response);
+		wp_send_json($response);
 	}
 }
