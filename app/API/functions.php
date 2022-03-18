@@ -47,15 +47,18 @@ function the_favorites_button($post_id = null, $site_id = null, $group_id = null
 * @param $html bool whether to return html (returns simple integer if false)
 * @return string html
 */
-function get_favorites_count($post_id = null, $site_id = null, $html = true)
+function get_favorites_count($post_id = null, $site_id = null, $html = true, $group_id = null)
 {
+	if($group_id === null) {
+		$group_id = '1';
+	}
 	global $blog_id;
 	$site_id = ( is_multisite() && is_null($site_id) ) ? $blog_id : $site_id;
 	if ( !$post_id ) $post_id = get_the_id();
 	$count = new FavoriteCount();
-	$count = $count->getCount($post_id, $site_id);
+	$count = $count->getCount($post_id, $site_id, $group_id);
 	$out = "";
-	if ( $html ) $out .= '<span data-favorites-post-count-id="' . $post_id . '" data-siteid="' . $site_id . '">';
+	if ( $html ) $out .= '<span data-favorites-post-count-id="' . $post_id . '" data-siteid="' . $site_id . '"  data-groupid="' . $group_id . '">';
 	$out .= $count;
 	if ( $html ) $out .= '</span>';
 	return $out;
@@ -68,9 +71,9 @@ function get_favorites_count($post_id = null, $site_id = null, $html = true)
 * @param $site_id int defaults to current blog/site
 * @return void
 */
-function the_favorites_count($post_id = null, $site_id = null, $html = true)
+function the_favorites_count($post_id = null, $site_id = null, $html = true, $group_id = null)
 {
-	echo get_favorites_count($post_id, $site_id, $html);
+	echo get_favorites_count($post_id, $site_id, $html, $group_id);
 }
 
 

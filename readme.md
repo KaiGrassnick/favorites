@@ -29,9 +29,9 @@ The plugin name is “Favorites,” but the button text is customizable. It can 
 #### Favorite Button
 The favorite button can be added automatically to the content by enabling specific post types in the plugin settings. It may also be added to template files or through the content editor using the included functions or shortcodes. The post id may be left blank in all cases if inside the loop. The site id parameter is optional, for use in multisite installations.
 
-- **Get function:** `get_favorites_button($post_id, $site_id)`
-- **Print function:** `the_favorites_button($post_id, $site_id)`
-- **Shortcode:** `[favorite_button post_id="" site_id=""]`
+- **Get function:** `get_favorites_button($post_id, $site_id, $group_id)`
+- **Print function:** `the_favorites_button($post_id, $site_id, $group_id)`
+- **Shortcode:** `[favorite_button post_id="" site_id="" group_id=""]`
 
 #### Favorite Count (by Post)
 Total favorites for each post are saved as a simple integer. If a user unfavorites a post, this count is updated. Anonymous users' favorites count towards the total by default, but may be disabled via the plugin settings. The post id may be left blank in all cases if inside the loop.

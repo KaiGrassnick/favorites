@@ -1,5 +1,5 @@
 === Favorites ===
-Contributors: kylephillips
+Contributors: kylephillips, kaigrassnick
 Donate link: http://favoriteposts.com/
 Tags: favorites, like, bookmark, favorite, likes, bookmarks, favourite, favourites, multisite, wishlist, wish list
 Requires at least: 3.8

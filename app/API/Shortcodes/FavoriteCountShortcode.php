@@ -21,7 +21,8 @@ class FavoriteCountShortcode
 	{
 		$this->options = shortcode_atts([
 			'post_id' => '',
-			'site_id' => ''
+			'site_id' => '',
+			'group_id' => ''
 		], $options);
 	}
 
@@ -32,6 +33,6 @@ class FavoriteCountShortcode
 	public function renderView($options)
 	{
 		$this->setOptions($options);
-		return get_favorites_count($this->options['post_id'], $this->options['site_id']);
+		return get_favorites_count($this->options['post_id'], $this->options['site_id'], true, $this->options['group_id']);
 	}
 }

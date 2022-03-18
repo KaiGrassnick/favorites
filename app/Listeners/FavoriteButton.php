@@ -85,11 +85,9 @@ class FavoriteButton extends AJAXListenerBase
 	*/
 	private function validates()
 	{
-		$post_type = get_post_type($this->data['postid']);
-		$enabled = $this->settings_repo->displayInPostType($post_type);
 		$post_type_object = get_post_type_object(get_post_type($this->data['postid']));
 		if ( !$post_type_object ) return false;
-		if ( !$post_type_object->public || !$enabled ) return false;
+		if ( !$post_type_object->public ) return false;
 		return true;
 	}
 }
