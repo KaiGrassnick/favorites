@@ -68,7 +68,16 @@ class FavoriteButton extends AJAXListenerBase
 	{
 		$user = ( is_user_logged_in() ) ? get_current_user_id() : null;
 		do_action('favorites_after_favorite', $this->data['postid'], $this->data['status'], $this->data['siteid'], $user);
-		do_action('favorites_after_favorite_with_group_id', $this->data['postid'], $this->data['status'], $this->data['siteid'], $this->data['groupid'], $user);
+
+		$params = [
+			'postId' => $this->data['postid'],
+			'status' => $this->data['status'],
+			'siteId' => $this->data['siteid'],
+			'groupId' => $this->data['groupid'],
+			'userId' => $user
+		];
+
+		do_action('favorites_after_favorite_with_group_id',$params);
 	}
 
 	/**
