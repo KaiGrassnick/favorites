@@ -65,6 +65,8 @@ abstract class FavoriteListTypeBase
 			? null : $this->list_options->user_id;
 		$this->list_options->filters = ( is_null($this->list_options->filters) || $this->list_options->filters == '' ) 
 			? null : $this->list_options->filters;
+		$this->list_options->group_id = ( is_null($this->list_options->group_id) || $this->list_options->group_id == '' )
+			? null : $this->list_options->group_id;
 	}
 
 	/**
@@ -72,7 +74,7 @@ abstract class FavoriteListTypeBase
 	*/
 	protected function setFavorites()
 	{
-		$favorites = $this->user_favorites->getFavoritesArray($this->list_options->user_id, $this->list_options->site_id, $this->list_options->filters);
+		$favorites = $this->user_favorites->getFavoritesArray($this->list_options->user_id, $this->list_options->site_id, $this->list_options->filters, $this->list_options->group_id);
 		$this->favorites = ( isset($favorites[0]['site_id']) ) ? $favorites[0]['posts'] : $favorites;
 	}
 

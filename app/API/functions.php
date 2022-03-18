@@ -84,12 +84,12 @@ function the_favorites_count($post_id = null, $site_id = null, $html = true, $gr
 * @param $filters array of post types/taxonomies
 * @return array
 */
-function get_user_favorites($user_id = null, $site_id = null, $filters = null)
+function get_user_favorites($user_id = null, $site_id = null, $filters = null, $group_id = null)
 {
 	global $blog_id;
 	$site_id = ( is_multisite() && is_null($site_id) ) ? $blog_id : $site_id;
 	if ( !is_multisite() ) $site_id = 1;
-	$favorites = new UserFavorites($user_id, $site_id, $links = false, $filters);
+	$favorites = new UserFavorites($user_id, $site_id, $links = false, $filters, $group_id);
 	return $favorites->getFavoritesArray();
 }
 

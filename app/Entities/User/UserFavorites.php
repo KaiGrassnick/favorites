@@ -19,6 +19,12 @@ class UserFavorites
 	private $site_id;
 
 	/**
+	 * Group ID
+	 * @var int
+	 */
+	private $group_id;
+
+	/**
 	* Display Links
 	* @var boolean
 	*/
@@ -35,23 +41,25 @@ class UserFavorites
 	*/
 	private $user_repo;
 
-	public function __construct($user_id = null, $site_id = null, $links = false, $filters = null)
+	public function __construct($user_id = null, $site_id = null, $links = false, $filters = null, $group_id = null)
 	{
 		$this->user_id = $user_id;
 		$this->site_id = $site_id;
 		$this->links = $links;
 		$this->filters = $filters;
+		$this->group_id = $group_id;
 		$this->user_repo = new UserRepository;
 	}
 
 	/**
 	* Get an array of favorites for specified user
 	*/
-	public function getFavoritesArray($user_id = null, $site_id = null, $filters = null)
+	public function getFavoritesArray($user_id = null, $site_id = null, $filters = null, $group_id = null)
 	{
 		$user_id = ( isset($user_id) ) ? $user_id : $this->user_id;
 		$site_id = ( isset($site_id) ) ? $site_id : $this->site_id;
-		$favorites = $this->user_repo->getFavorites($user_id, $site_id);
+		$group_id = ( isset($group_id) ) ? $group_id : $this->group_id;
+		$favorites = $this->user_repo->getFavorites($user_id, $site_id, $group_id);
 		if ( isset($filters) ) $this->filters = $filters;
 		if ( isset($this->filters) && is_array($this->filters) ) $favorites = $this->filterFavorites($favorites);
 		return $this->removeInvalidFavorites($favorites);
@@ -99,6 +107,7 @@ class UserFavorites
 			'include_links' => $this->links,
 			'site_id' => $this->site_id,
 			'user_id' => $this->user_id,
+			'group_id' => $this->group_id,
 			'no_favorites' => $no_favorites,
 			'filters' => $this->filters,
 		];

@@ -30,6 +30,7 @@ class UserFavoritesShortcode
 		$this->options = shortcode_atts([
 			'user_id' => '',
 			'site_id' => '',
+			'group_id' => '',
 			'include_links' => 'true',
 			'post_types' => '',
 			'include_buttons' => 'false',
@@ -61,6 +62,7 @@ class UserFavoritesShortcode
 		
 		if ( $this->options['user_id'] == "" ) $this->options['user_id'] = null;
 		if ( $this->options['site_id'] == "" ) $this->options['site_id'] = null;
+		if ( $this->options['group_id'] == "" ) $this->options['group_id'] = null;
 		$this->options['include_links'] = ( $this->options['include_links'] == 'true' );
 		$this->options['include_buttons'] = ( $this->options['include_buttons'] == 'true' );
 		$this->options['include_thumbnails'] = ( $this->options['include_thumbnails'] == 'true' );
@@ -70,7 +72,8 @@ class UserFavoritesShortcode
 			$this->options['user_id'], 
 			$this->options['site_id'], 
 			$this->options['include_links'], 
-			$this->filters
+			$this->filters,
+			$this->options['group_id']
 		);
 		return $favorites->getFavoritesList(
 			$this->options['include_buttons'], 
